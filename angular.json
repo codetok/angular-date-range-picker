@@ -116,6 +116,46 @@
           }
         }
       }
+    },
+    "cdk-date-range": {
+      "root": "projects/cdk-date-range",
+      "sourceRoot": "projects/cdk-date-range/src",
+      "projectType": "library",
+      "prefix": "lib",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-ng-packagr:build",
+          "options": {
+            "tsConfig": "projects/cdk-date-range/tsconfig.lib.json",
+            "project": "projects/cdk-date-range/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "project": "projects/cdk-date-range/ng-package.prod.json"
+            }
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/cdk-date-range/src/test.ts",
+            "tsConfig": "projects/cdk-date-range/tsconfig.spec.json",
+            "karmaConfig": "projects/cdk-date-range/karma.conf.js"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/cdk-date-range/tsconfig.lib.json",
+              "projects/cdk-date-range/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
     }
   },
   "defaultProject": "cdk-datepicker"
