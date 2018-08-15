@@ -1,27 +1,37 @@
 # CdkDatepicker
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 6.0.8.
+simple date picker to get date-range. 
 
-## Development server
+inspired from http://www.daterangepicker.com/
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+No Jquery, pure angular implmentation. 
 
-## Code scaffolding
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
 
-## Build
+installation 
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+npm i cdk-date-range
 
-## Running unit tests
+//controller
+import { CdkDateRangeModule } from 'cdk-date-range';
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
 
-## Running end-to-end tests
 
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
+view
 
-## Further help
+<div>
+    <input  placeholder="date range" [cdkpicker]="daterangePicker2" value="2/2/2018-4/4/2018" >
+    <div style="position: relative; ">
+            <lib-cdk-date-range #daterangePicker2></lib-cdk-date-range>
+    </div>        
+</div>
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+
+//with mat-input in angular material
+<mat-form-field>
+        <input matInput placeholder="date range" [cdkpicker]="daterangePicker" value="2/2/2018-4/4/2018" >
+    </mat-form-field>
+    <div style="position: relative;  ">
+        <lib-cdk-date-range #daterangePicker  ></lib-cdk-date-range>
+</div>
+    

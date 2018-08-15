@@ -12,7 +12,10 @@
     font-family: arial;
     font-size: 15px;
     line-height: 1em;
-
+  }
+  :host {
+    position: absolute;
+    width:700px;
   }
   
   .daterangepicker:before, .daterangepicker:after {

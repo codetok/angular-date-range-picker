@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 import { MatInputModule, MatDatepickerModule } from '@angular/material';
 import { AppComponent } from './app.component';
 
-import { CdkDateRangeModule } from 'projects/cdk-date-range/src/public_api';
+import { CdkDateRangeModule } from '../../projects/cdk-date-range/src/public_api';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 

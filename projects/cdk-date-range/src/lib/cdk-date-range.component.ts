@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Subject } from 'rxjs';
-import * as moment from 'moment';
+import * as momentImported from 'moment'; const moment = momentImported;
 
 @Component({
     selector: 'lib-cdk-date-range',
@@ -13,8 +13,8 @@ export class CdkDateRangeComponent implements OnInit {
     public show = false;
     public fromSetting;
     public toSetting;
-    public fromDateStart = false;
-    
+    public fromDateStart = true;
+
     public range: any = {
         from: new Date(),
         to: new Date()
@@ -26,9 +26,9 @@ export class CdkDateRangeComponent implements OnInit {
 
     setDates(daterange) {
         const dates = daterange.split('-');
-        this.fromSetting = moment(dates[0], 'MM/DD/YYYYY' );
+        this.fromSetting = moment(dates[0], 'MM/DD/YYYY' );
         this.range.from = this.fromSetting;
-        this.range.to = moment(dates[1], 'MM/DD/YYYYY' );
+        this.range.to = moment(dates[1], 'MM/DD/YYYY' );
         this.toSetting = moment(this.fromSetting).add(1, 'M');
     }
 
@@ -40,20 +40,72 @@ export class CdkDateRangeComponent implements OnInit {
             this.fromSetting =  moment(this.fromSetting).add(1, 'month');
             this.toSetting =  moment(this.toSetting).add(1, 'month');
         }
-
     }
     selectStartEndDay(day) {
-        if (this.fromDateStart === false) {
+        if (this.fromDateStart === true ) {
             this.range.from = day;
-            this.fromDateStart = true;
-        } else {
-            this.range.to = day;
             this.fromDateStart = false;
+            this.range.to = '';
+        } else {
+            if (day < moment(this.range.from)) {
+                this.range.from = day;
+                this.fromDateStart = false;
+                this.range.to = '';
+            } else {
+                this.range.to = day;
+                this.fromDateStart = true;
+            }
         }
     }
     UpdateDate() {
-        this.dateSubject.next('May 31, 2015 - May 31, 2016');
+        const fromFormated = moment(this.range.from).format('MM/DD/YYYY');
+        const toFormated = moment(this.range.to).format('MM/DD/YYYY');
+        this.dateSubject.next(fromFormated + '-' + toFormated);
         this.close();
+    }
+    setDefaultRange(type) {
+        switch (type) {
+            case 'today':
+                this.range.from = moment();
+                this.range.to = moment();
+                this.UpdateDate();
+            break;
+
+            case 'yesterday':
+                this.range.from = moment().add(-1, 'days');
+                this.range.to = moment().add(-1, 'days');
+                this.UpdateDate();
+            break;
+
+            case 'last7':
+                this.range.from = moment().add(-7, 'days');
+                this.range.to = moment();
+                this.UpdateDate();
+            break;
+
+            case 'last30':
+                this.range.from = moment().add(-30, 'days');
+                this.range.to = moment();
+                this.UpdateDate();
+            break;
+
+            case 'thismonth':
+                this.range.from = moment().startOf('month');
+                this.range.to = moment().endOf('month');
+                this.UpdateDate();
+            break;
+
+            case 'lastmonth':
+                this.range.from = moment().add(-1, 'month').startOf('month');
+                this.range.to = moment().add(-1, 'month').endOf('month');
+                this.UpdateDate();
+            break;
+
+            case 'custom':
+            break;
+
+        }
+        console.log(this.range);
     }
 
     close() {

@@ -1,5 +1,5 @@
 import { Directive, ElementRef, OnInit, Input, OnChanges, EventEmitter, Output } from '@angular/core';
-import * as moment from 'moment';
+import * as momentImported from 'moment'; const moment = momentImported;
 
 @Directive({
     selector: 'input[cdkpicker]',
@@ -23,6 +23,7 @@ export class DatepickerRangeInput {
                 this._el.nativeElement.value = res;
             });
     }
+
     constructor(public _el: ElementRef) {
 
     }

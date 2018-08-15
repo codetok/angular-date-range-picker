@@ -1,6 +1,6 @@
 import { Component, OnInit, Input, OnChanges, EventEmitter, Output } from '@angular/core';
 
-import * as moment from 'moment';
+import * as momentImported from 'moment'; const moment = momentImported;
 
 @Component({
     selector: 'lib-cdk-calendar',
