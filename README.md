@@ -1,10 +1,10 @@
 # CdkDatepicker
 
-simple date picker to get date-range. 
+simple date range picker for angular 6+.
 
 inspired from http://www.daterangepicker.com/
 
-No Jquery, pure angular implmentation. 
+No Jquery, pure angular implementation. 
 
 
 
