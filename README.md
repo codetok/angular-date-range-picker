@@ -1,6 +1,6 @@
 # CdkDatepicker
 
-simple date range picker for angular 6+.
+simple date range picker for angular 9+.
 
 inspired from http://www.daterangepicker.com/
 
